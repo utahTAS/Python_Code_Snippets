@@ -33,3 +33,6 @@ button = Button(master, text="OK", command=quit)
 button.grid(row=5, sticky=W, column=2)
 
 #final variable we wanted to keep here is 'choice'
+
+
+mainloop()
