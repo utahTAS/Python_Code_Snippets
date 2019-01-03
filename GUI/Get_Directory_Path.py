@@ -1,3 +1,9 @@
+#########################################################################################
+## Use this code to open a file dialog that gets the name of a directory that the user ##
+## chooses. The directory name is saved as a string in the variable outfile_path  in   ##
+## example. Requires the instal of wx python. https://anaconda.org/anaconda/wxpython   ##
+#########################################################################################
+
 import wx
 
 app = wx.App()
@@ -17,3 +23,5 @@ outfile_path = openFileDialog.GetPath()+'\\'
 openFileDialog.Destroy()
 
 del app
+
+
