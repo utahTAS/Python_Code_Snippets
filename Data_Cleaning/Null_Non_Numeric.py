@@ -1,7 +1,7 @@
 #############################################################
 ## This code force strip all non-numeric data and replaces ##
 ## them with null (np.NaN) values. This code uses an       ##
-## example fielfd saved on the 'U:' drive.                 ##
+## example field saved on the 'U:' drive.                 ##
 #############################################################
 
 
