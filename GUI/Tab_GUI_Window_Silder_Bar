@@ -1,0 +1,72 @@
+#%%
+###############################################################################
+###############################################################################
+#                                                                             #
+#                   GUI to Create Tabs in a Window,                           #
+#           and create a silder bar that updates on user input
+#                                                                             #
+###############################################################################
+###############################################################################
+#Make sure to install ttk. On anaconda use:
+#conda install -c conda-forge pyttk 
+###############################################################################
+
+
+from tkinter import *
+from tkinter import ttk
+
+class Notebook:
+
+    def __init__(self,title):                                  #initialize vars
+        
+        self.root = Tk()
+        self.root.title(title)
+        self.note = ttk.Notebook(self.root,width=1000, height=700) #create notebook
+        self.root.resizable(width=False, height=False)     #freeze window size
+        self._job = None               #use to tell if need to update
+        
+        #next, add the tabs
+        self.tab1 = ttk.Frame(self.note)                    
+        self.tab2 = ttk.Frame(self.note)
+        self.note.add(self.tab1,text='Main')
+        self.note.add(self.tab2,text='Plots')
+        self.note.pack()
+        
+        
+        #add the sliders
+        self.slider = tk.Scale(self.tab1, from_=0, to=256, 
+                               orient="horizontal", 
+                               command=self.updateValue)
+
+        self.t1 = tk.Label(self.tab1, text="Slider #1")
+        self.t1.grid(row=0,column=0)
+        self.slider.grid(row=2,column=0)
+        self.s2 = tk.Scale(self.tab1, from_=0, to=128, 
+                       orient="horizontal", 
+                       command=self.updateValue)
+
+        self.t2 = tk.Label(self.tab1, text="Slider #2")
+        self.t2.grid(row=3,column=0)              
+        self.s2.grid(row=4, column=0)
+
+    def updateValue(self, event):                 #get updated value of silder1
+        if self._job:
+            self.root.after_cancel(self._job)
+        self._job = self.root.after(500, self._update_bar2)
+
+    def _update_bar2(self):                          #update value of bar2
+        self._job = None
+        test=self.slider.get()/2
+        self.s2.set(test)
+
+    def run(self):                                 #keep the tk window running
+        self.root.mainloop()
+
+nb = Notebook('Example')
+nb.run()
+
+
+#Extra code
+
+#        self.s2.place(relx=.5, rely=.5, anchor="c")
+#        self.slider.place(relx=.5, rely=.4, anchor="c")
