@@ -1,0 +1,22 @@
+#Create a radio button. For so
+from tkinter import *
+
+master=Tk()
+
+def ShowChoice():
+    global preview
+    preview=variable10.get()
+    #print(preview)          #uncomment this to make sure the buttons ar eworking
+
+
+variable10 = IntVar(master)  #Need to have 'master' in here. For some reason this is missing from examples on internet. 
+variable10.set(1)
+r1 = Radiobutton(master, text='Preview',
+                        variable=variable10, value=1, command=ShowChoice)
+r1.grid(row=6, sticky=W, column=1)
+
+r2 = Radiobutton(master, text='Send',
+                        variable=variable10, value=2, command=ShowChoice)
+r2.grid(row=7, sticky=W, column=1)
+
+master.mainloop()
